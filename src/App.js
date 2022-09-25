@@ -7,6 +7,8 @@ import Header from './components/Header'
 import Contact from './components/Contact'
 import ContactForm from './components/ContactForm'
 import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import List from '@mui/material/List';
 
 const App = () => {
   // Masukkan Header dan lakukan map untuk Contact ke dalam div App
@@ -28,7 +30,11 @@ const App = () => {
             <ContactForm dataFormOnSubmitHandler={formOnSubmitHandler} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Contact dataContacs={contacts} />
+            <Card sx={{ marginRight: 10 }}>
+                <List sx={{ width: '100%', bgcolor: '#dbf6f0' }}>
+                  <Contact dataContacs={contacts} />
+                </List>
+            </Card>
           </Grid>
         </Grid>
     </div>
