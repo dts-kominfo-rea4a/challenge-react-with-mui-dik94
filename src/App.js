@@ -32,7 +32,13 @@ const App = () => {
           <Grid item xs={12} sm={6}>
             <Card sx={{ marginRight: 10 }}>
                 <List sx={{ width: '100%', bgcolor: '#dbf6f0' }}>
-                  <Contact dataContacs={contacts} />
+                    {
+                      contacts
+                        .map((item, index) => (
+              // <Contact dataContacs={contacts} />
+              <Contact item={item} index={index} />
+             ))
+                    }
                 </List>
             </Card>
           </Grid>
