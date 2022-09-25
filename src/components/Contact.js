@@ -2,7 +2,6 @@
 // Contact component dapat berupa MUI ListItem
 // https://mui.com/material-ui/react-list/#folder-list
 import React from 'react';
-
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
@@ -10,39 +9,29 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-
 // Kalian bisa membuat CSS sendiri di src/components/Contact.css
 // atau langsung tambahkan dengan sx={{}}
-const Contact = ({ item, index }) => {
+const Contact = ({ data }) => {
     // Contact berisi foto, nama, telepon, dan email
     return (
         <>
-            
-                            <>
-                                <ListItem key={index} alignItems="flex-start">
-                                    <ListItemAvatar sx={{ paddingRight: 2 }}>
-                                        <Avatar alt="" src={item.photo} sx={{ width: 70, height: 70 }} />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={item.name}
-                                        secondary={
-                                            <React.Fragment>
-                                                <Typography
-                                                    sx={{ display: 'inline' }}
-                                                    component="span"
-                                                    variant="body2"
-                                                    color="text.primary"
-                                                >
-                                                </Typography>
-                                                {item.phone}
-                                                <ListItemText primary={item.email} />
-                                            </React.Fragment>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider variant="fullWidth" component="li" />
-                            </>
-                       
+            <ListItem alignItems="flex-start">
+                <ListItemAvatar sx={{ paddingRight: 2 }}>
+                    <Avatar alt="" src={data.photo} sx={{ width: 70, height: 70 }} />
+                </ListItemAvatar>
+                <ListItemText
+                    primary={<Typography sx={{ fontWeight: 500 }}>
+                            {data.name}
+                        </Typography>}
+                    secondary={
+                        <>
+                            <Typography>{data.phone}</Typography>
+                            <Typography>{data.email}</Typography>
+                        </>
+                    }
+                />
+            </ListItem>
+            <Divider variant="fullWidth" component="li" />
         </>
     );
 };

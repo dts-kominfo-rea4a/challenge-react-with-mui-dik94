@@ -6,9 +6,7 @@ import contactsJSON from './data/contacts.json';
 import Header from './components/Header'
 import Contact from './components/Contact'
 import ContactForm from './components/ContactForm'
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import List from '@mui/material/List';
+import { Grid, Card, List } from "@mui/material";
 
 const App = () => {
   // Masukkan Header dan lakukan map untuk Contact ke dalam div App
@@ -25,24 +23,22 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-        <Grid container sx={{ width: '100%', height: '100%', padding:10 }}>
-          <Grid item xs={12} sm={6}>
-            <ContactForm dataFormOnSubmitHandler={formOnSubmitHandler} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Card sx={{ marginRight: 10 }}>
-                <List sx={{ width: '100%', bgcolor: '#dbf6f0' }}>
-                    {
-                      contacts
-                        .map((item, index) => (
-              // <Contact dataContacs={contacts} />
-              <Contact item={item} index={index} />
-             ))
-                    }
-                </List>
-            </Card>
-          </Grid>
+      <Grid container sx={{ width: '100%', height: '100%', padding: 10 }}>
+        <Grid item xs={12} sm={6}>
+          <ContactForm dataFormOnSubmitHandler={formOnSubmitHandler} />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <Card sx={{ marginRight: 10 }}>
+            <List sx={{ width: '100%', bgcolor: '#dbf6f0' }}>
+              {contacts
+                .map((item, index) => (
+                  <Contact data={item} key={index} />
+                ))
+              }
+            </List>
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   );
 };

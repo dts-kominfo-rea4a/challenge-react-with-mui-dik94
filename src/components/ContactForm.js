@@ -5,19 +5,25 @@
 
 import { Button, TextField } from "@mui/material";
 import Card from '@mui/material/Card';
+import { useState } from "react";
 
 const ContactForm = ({dataFormOnSubmitHandler}) => {
     // Form berisi name, phone, email, dan photo url
     // Buatlah state newContact berupa objek sesuai dengan data yang ada
+    const [newContact, setNewContact] = useState({
+      name: "",
+      phone: "",
+      email: "",
+      photo: "",
+    });
+
+    const inputOnChangeHandler = (e) => {
+        setNewContact({ ...newContact, [e.target.name]: e.target.value });
+    };
     const kirim = (event) => {
         event.preventDefault();
-        const newContact = {
-            name  : event.target.name.value,
-            phone : event.target.phone.value,
-            email : event.target.email.value,
-            photo : event.target.photo.value
-        }
         dataFormOnSubmitHandler(newContact)
+        setNewContact({ name: "", phone: "", email: "", photo: "" });
     };
     
     return (
@@ -31,6 +37,9 @@ const ContactForm = ({dataFormOnSubmitHandler}) => {
                   name="name"
                   variant = "filled"
                   required
+                  value={newContact.name}
+                  onChange={inputOnChangeHandler}
+                  fullWidth
                 />
                 <TextField
                   style={{ width: "100%", margin: "5px" }}
@@ -39,6 +48,9 @@ const ContactForm = ({dataFormOnSubmitHandler}) => {
                   name="phone"
                   variant = "filled"
                   required
+                  value={newContact.phone}
+                  onChange={inputOnChangeHandler}
+                  fullWidth
                 />
                 <TextField
                   style={{ width: "100%", margin: "5px" }}
@@ -47,6 +59,9 @@ const ContactForm = ({dataFormOnSubmitHandler}) => {
                   name="email"
                   variant = "filled"
                   required
+                  value={newContact.email}
+                  onChange={inputOnChangeHandler}
+                  fullWidth
                 />
                 <TextField
                   style={{ width: "100%", margin: "5px" }}
@@ -55,6 +70,9 @@ const ContactForm = ({dataFormOnSubmitHandler}) => {
                   name="photo"
                   variant = "filled"
                   required
+                  value={newContact.photo}
+                  onChange={inputOnChangeHandler}
+                  fullWidth
                 />
                 <Button color="success" type="submit">ADD NEW</Button>
             </form>
